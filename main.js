@@ -35,10 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!container) return;
 
   fetch(`${BASE_PATH}/pages/sidebar.html`)
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById('sidebar').innerHTML = html;
-  });
+  .then(res => {
+      if (!res.ok) throw new Error('Sidebar not found');
+      return res.text();
+    })
+    .then(html => {
+      container.innerHTML = html;
 
       const currentPage = document.body.dataset.page;
       const activeLink = container.querySelector(
