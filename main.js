@@ -26,17 +26,19 @@ let currentDate = `${month} ${day}, ${year}`;
 document.getElementById("date").innerHTML = currentDate;
 
 //Sidebar
+const BASE_PATH = window.location.hostname.includes('github.io')
+  ? '/subtrack' // <-- repo name, case-sensitive
+  : '';
+
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('sidebar-container');
   if (!container) return;
 
   fetch(`${BASE_PATH}/pages/sidebar.html`)
-    .then(res => {
-      if (!res.ok) throw new Error('Sidebar not found');
-      return res.text();
-    })
-    .then(html => {
-      container.innerHTML = html;
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById('sidebar').innerHTML = html;
+  });
 
       const currentPage = document.body.dataset.page;
       const activeLink = container.querySelector(
