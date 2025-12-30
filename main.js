@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('sidebar-container');
   if (!container) return;
 
-  fetch('pages/sidebar.html')
+  fetch('/subtrack-project/pages/sidebar.html')
     .then(res => {
       if (!res.ok) throw new Error('Sidebar not found');
       return res.text();
