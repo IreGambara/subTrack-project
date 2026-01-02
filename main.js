@@ -26,11 +26,13 @@ let currentDate = `${month} ${day}, ${year}`;
 document.getElementById("date").innerHTML = currentDate;
 
 //Sidebar
+const BASE_PATH = '/subtrack-project';
+
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('sidebar-container');
   if (!container) return;
 
-  fetch('sidebar.html')
+  fetch(`${BASE_PATH}/sidebar.html`)
   .then(res => {
       if (!res.ok) throw new Error('Sidebar not found');
       return res.text();
